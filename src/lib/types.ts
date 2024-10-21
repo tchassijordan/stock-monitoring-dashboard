@@ -1,4 +1,4 @@
-export interface ITableData {
+export interface IStock {
   symbol: string;
   name: string;
   price: number;

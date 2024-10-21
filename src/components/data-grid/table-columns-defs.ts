@@ -1,7 +1,7 @@
 import { ColumnDef } from '@tanstack/react-table';
-import { ITableData } from './types';
+import { IStock } from '../../lib/types';
 
-const tableColumnsDefs: ColumnDef<ITableData, string | number>[] = [
+const tableColumnsDefs: ColumnDef<IStock, string | number>[] = [
   {
     accessorKey: 'symbol',
     header: 'SYMBOL',

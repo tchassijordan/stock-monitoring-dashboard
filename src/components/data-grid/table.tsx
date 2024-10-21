@@ -7,14 +7,14 @@ import {
 } from '@tanstack/react-table';
 
 // ** Types
-import { ITableData } from './types';
+import { IStock } from '../../lib/types';
 
 // ** Styles
 import './table.scss';
 
 interface IDataGrid {
-  data: ITableData[];
-  columns: ColumnDef<ITableData, string | number>[];
+  data: IStock[];
+  columns: ColumnDef<IStock, string | number>[];
   isLoading?: boolean;
 }
 
