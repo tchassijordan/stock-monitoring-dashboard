@@ -5,14 +5,14 @@ import { useState } from 'react';
 import AppShellLayout from './layout';
 
 // ** Component Imports
-import DataGrid from './components/data-viz/table';
+import DataGrid from './components/data-grid/table';
 import SearchBar from './components/search-bar/search-bar';
 
 // ** Data
-import { mockTableData } from './components/data-viz/constant';
+import { mockTableData } from './components/data-grid/constant';
 
 // ** Column Defs
-import tableColumnsDefs from './components/data-viz/table-columns-defs';
+import tableColumnsDefs from './components/data-grid/table-columns-defs';
 
 export default function App() {
   const [query, setQuery] = useState('');
