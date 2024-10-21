@@ -1,0 +1,34 @@
+@use '../../base.scss';
+
+.search-bar {
+  @include base.flex-center;
+
+  gap: base.$spacing-sm;
+  border-radius: base.$spacing-sm;
+  width: 100%;
+
+  .search-input {
+    flex: 1;
+    padding: base.$spacing-md;
+    border: 1px solid base.$input-color;
+    outline: none;
+    font-size: 1rem;
+    gap: base.$spacing-sm;
+    border-radius: 8px;
+  }
+
+  .search-button {
+    padding: base.$spacing-md base.$spacing-lg;
+    border: none;
+    background-color: base.$primary-color;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: base.$primary-color-dark;
+    }
+  }
+}
