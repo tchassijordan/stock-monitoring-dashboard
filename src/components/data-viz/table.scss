@@ -1,79 +1,51 @@
+@use '../../base';
+
 .table-container {
   position: relative;
   width: 100%;
   overflow: auto;
-  max-height: 500px;
+  max-height: 600px;
+  padding-right: base.$spacing-sm;
 }
 
 .table {
   width: 100%;
   caption-side: bottom;
   font-size: 0.875rem;
+  border-collapse: collapse;
 }
 
-.table-header {
-  tr {
-    border-bottom: 1px solid #e5e7eb;
-  }
-}
-
-.table-body {
-  tr:last-child {
-    border: 0;
-  }
-}
-
-.table-footer {
-  border-top: 1px solid #e5e7eb;
-  background-color: rgba(243, 244, 246, 0.5);
+.table-head {
+  height: 3rem;
+  padding-inline: base.$spacing-base;
+  text-align: left;
+  vertical-align: middle;
   font-weight: 500;
-
-  tr:last-child {
-    border-bottom: 0;
-  }
+  color: #7a8596;
+  background-color: white;
+  z-index: 2;
+  top: 0;
+  position: sticky;
 }
 
 .table-row {
-  border-bottom: 1px solid #e5e7eb;
   transition: background-color 0.2s ease-in-out;
 
   &:hover {
     background-color: rgba(243, 244, 246, 0.5);
   }
 
-  &[data-state='selected'] {
-    background-color: #f3f4f6;
-  }
-}
+  &:last-child {
+    border-bottom: 0;
 
-.table-head {
-  height: 3rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  text-align: left;
-  vertical-align: middle;
-  font-weight: 500;
-  color: #9ca3af;
-  background-color: white;
-  z-index: 2;
-
-  &:has([role='checkbox']) {
-    padding-right: 0;
+    .table-cell {
+      border-bottom: 0;
+    }
   }
 }
 
 .table-cell {
-  padding: 1rem; /* "tw-p-4" */
+  padding: base.$spacing-base;
   vertical-align: middle;
-
-  &:has([role='checkbox']) {
-    padding-right: 0;
-  }
-}
-
-/* TableCaption (tw-mt-4, tw-text-sm, tw-text-muted-foreground) */
-.table-caption {
-  margin-top: 1rem; /* "tw-mt-4" */
-  font-size: 0.875rem; /* "tw-text-sm" */
-  color: #9ca3af; /* Tailwind's "text-muted-foreground" */
+  border-bottom: 1px solid base.$input-color;
 }
