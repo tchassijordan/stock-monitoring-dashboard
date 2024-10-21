@@ -11,8 +11,10 @@ function useGetData(query?: string) {
 
       try {
         setLoading(true);
+        const searchParamsStr = query ? `?q=${query}` : '';
+
         const response = await fetch(
-          `http://localhost:${PORT}/api/data/?q=${query}`,
+          `http://localhost:${PORT}/api/data/${searchParamsStr}`,
         );
         let responseData = await response.json();
 

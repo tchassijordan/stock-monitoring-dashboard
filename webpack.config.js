@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const { mockTableData } = require('./src/mock/data');
+const { routeHandler } = require('./src/mock/route-handler');
 
 const PORT = process.env.PORT || 8080;
 
@@ -44,12 +44,7 @@ module.exports = {
     hot: true,
     port: PORT,
     setupMiddlewares: (middlewares, devServer) => {
-      devServer.app.get('/api/data', (_, res) => {
-        // Simulate a slow network request
-        setTimeout(() => {
-          res.json(mockTableData);
-        }, 2_000);
-      });
+      devServer.app.get('/api/data', routeHandler);
 
       return middlewares;
     },
