@@ -11,7 +11,7 @@ const AppShellLayout = ({ children }: AppShellLayoutProps) => {
       <header>
         <Navbar navLinks={NAV_LINKS} />
       </header>
-      <div className="container margin-block-md">{children}</div>
+      <div className="container margin-block-lg">{children}</div>
     </main>
   );
 };

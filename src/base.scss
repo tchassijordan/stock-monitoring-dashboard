@@ -29,6 +29,14 @@ body {
   margin: 0 auto;
 }
 
-.margin-block-md {
-  margin-block: 20px;
+.margin-block-lg {
+  margin-block: $spacing-lg;
+}
+
+.app-content {
+  @include flex-center;
+
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: $spacing-lg;
 }
