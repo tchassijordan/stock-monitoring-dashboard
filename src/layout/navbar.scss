@@ -1,0 +1,51 @@
+@use '../base';
+
+nav {
+  background-color: base.$primary-color;
+  width: 100%;
+}
+
+.navbar {
+  @include base.flex-center;
+
+  justify-content: space-between;
+  padding: base.$spacing-md 0;
+  height: 50px;
+  background-color: base.$primary-color;
+  color: #fff;
+  gap: base.$spacing-lg;
+
+  .nav-logo {
+    @include base.flex-center;
+
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: white;
+    gap: base.$spacing-sm;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: base.$spacing-lg;
+
+    .nav-item {
+      list-style: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: white;
+      padding: base.$spacing-sm base.$spacing-md;
+      font-weight: 400;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: base.$primary-color-dark;
+      }
+    }
+  }
+}
