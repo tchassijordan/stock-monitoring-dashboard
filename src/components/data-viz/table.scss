@@ -4,8 +4,12 @@
   position: relative;
   width: 100%;
   overflow: auto;
-  max-height: 600px;
+  max-height: 500px;
   padding-right: base.$spacing-sm;
+
+  @media (min-height: 950px) {
+    max-height: 700px;
+  }
 }
 
 .table {
