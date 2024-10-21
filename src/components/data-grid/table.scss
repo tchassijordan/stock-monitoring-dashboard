@@ -53,3 +53,19 @@
   vertical-align: middle;
   border-bottom: 1px solid base.$input-color;
 }
+
+.table-spinner-container {
+  @include base.flex-center;
+
+  gap: base.$spacing-sm;
+}
+
+.table-spinner__rotate {
+  animation: rotate 0.75s linear infinite;
+
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
