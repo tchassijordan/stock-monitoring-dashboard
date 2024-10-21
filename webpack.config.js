@@ -1,6 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const { mockTableData } = require('./src/mock/data');
+
+const PORT = process.env.PORT || 8080;
 
 module.exports = {
   entry: './src/index.tsx',
@@ -39,6 +42,16 @@ module.exports = {
   devServer: {
     static: path.join(__dirname, 'dist'),
     hot: true,
-    port: 5030,
+    port: PORT,
+    setupMiddlewares: (middlewares, devServer) => {
+      devServer.app.get('/api/data', (_, res) => {
+        // Simulate a slow network request
+        setTimeout(() => {
+          res.json(mockTableData);
+        }, 2_000);
+      });
+
+      return middlewares;
+    },
   },
 };

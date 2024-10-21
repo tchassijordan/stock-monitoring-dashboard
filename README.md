@@ -28,3 +28,5 @@ To launch the project server and explore the app, run the following command:
 ```sh
 pnpm start
 ```
+
+The should be launch on port `8080`
