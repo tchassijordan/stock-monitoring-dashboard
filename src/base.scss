@@ -4,6 +4,7 @@ $primary-color-dark: #1e40af;
 $secondary-color: #f4f4f5;
 $input-color: #e4e4e7;
 $slate-color: #64748b;
+$zinc-color: #71717a;
 
 $spacing-xs: 0.25rem;
 $spacing-sm: 0.5rem;
@@ -11,7 +12,7 @@ $spacing-md: 0.75rem;
 $spacing-base: 1rem;
 $spacing-lg: 2rem;
 
-$max-width: 1000px;
+$max-width: 1100px;
 
 @mixin flex-center {
   display: flex;

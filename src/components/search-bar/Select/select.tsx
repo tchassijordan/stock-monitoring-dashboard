@@ -1,3 +1,4 @@
+import Select from 'react-select';
 import './select.scss';
 
 interface ISelectProps {
@@ -5,6 +6,7 @@ interface ISelectProps {
   options: IOption[];
   onSelect?: (value: string | number) => void;
   title: string;
+  placeholder?: string;
 }
 
 interface IOption {
@@ -12,28 +14,45 @@ interface IOption {
   value: string | number;
 }
 
-const Select = (props: ISelectProps) => {
-  const { value, options, onSelect, title } = props;
+const StyledSelect = (props: ISelectProps) => {
+  const { options, onSelect, title, placeholder } = props;
 
   return (
     <div className="select-container">
       <label htmlFor="percentage-change" className="select-label">
         {title}
       </label>
-      <select
-        name="percentage-change"
-        id="percentage-change"
-        value={value}
-        onChange={(e) => onSelect?.(e.target.value)}
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
+      <Select
+        className="rs-select"
+        options={options}
+        placeholder={placeholder}
+        value={options.find((option) => option.value === props.value) ?? null}
+        onChange={(option) => {
+          const value = option?.value;
+
+          if (value) {
+            onSelect?.(value);
+          }
+        }}
+        theme={(theme) => ({
+          ...theme,
+          colors: {
+            ...theme.colors,
+            primary: '#6297FF',
+          },
+        })}
+        classNames={{
+          indicatorSeparator: () => 'rs-indicator-separator',
+          control: (state) =>
+            `rs-control ${state.isFocused ? 'rs-control--is-focused' : ''}`,
+          dropdownIndicator: () => 'rs-dropdown-indicator',
+          container: (state) =>
+            state.isFocused ? 'rs-select-container--is-focused' : '',
+          menu: () => 'rs-menu',
+        }}
+      />
     </div>
   );
 };
 
-export default Select;
+export default StyledSelect;

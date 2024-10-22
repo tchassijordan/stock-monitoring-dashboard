@@ -7,8 +7,39 @@
   width: fit-content;
 
   .select-label {
+    font-size: 1rem;
+    color: base.$zinc-color;
+  }
+
+  .rs-select {
+    width: 180px;
     font-size: 0.85rem;
-    color: #000;
-    letter-spacing: 0.35px;
+  }
+
+  .rs-indicator-separator {
+    display: none;
+  }
+
+  .rs-control {
+    border: 1px solid base.$input-color !important;
+    border-radius: 8px !important;
+  }
+
+  .rs-control--is-focused {
+    box-shadow: none !important;
+  }
+
+  .rs-dropdown-indicator {
+    color: #667085 !important;
+  }
+
+  .rs-select-container--is-focused {
+    outline: none;
+    outline-offset: 2px !important;
+    border-radius: 4px !important;
+  }
+
+  .rs-menu {
+    border-radius: 8px !important;
   }
 }
