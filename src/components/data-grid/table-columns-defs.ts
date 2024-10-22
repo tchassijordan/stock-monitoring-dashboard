@@ -1,5 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { IStock } from '../../lib/types';
+import formatMarketCap from '../../lib/utils/formatMarketCap';
 
 const tableColumnsDefs: ColumnDef<IStock, string | number>[] = [
   {
@@ -33,14 +34,23 @@ const tableColumnsDefs: ColumnDef<IStock, string | number>[] = [
   {
     accessorKey: 'changePercent',
     header: 'CHANGE %',
-    cell: ({ getValue }) => getValue(),
+    cell: ({ getValue }) => {
+      const value = getValue();
+
+      return `${(Number(value) || 0).toFixed(1)}%`;
+    },
     sortDescFirst: false,
     minSize: 100,
   },
   {
     accessorKey: 'marketCap',
     header: 'MARKET CAP',
-    cell: ({ getValue }) => getValue(),
+    cell: ({ getValue }) => {
+      const marketCap = getValue();
+      const formattedMarketCap = formatMarketCap(marketCap);
+
+      return formattedMarketCap;
+    },
     sortDescFirst: false,
     minSize: 150,
   },
