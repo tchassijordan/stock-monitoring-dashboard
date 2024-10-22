@@ -1,37 +1,53 @@
-import { useEffect, useState } from 'react';
-import { IStock } from '../types';
+// ** React Imports
+import { useCallback, useEffect, useState } from 'react';
 
-function useGetData(query?: string) {
+// ** Type Imports
+import { IStock } from '../types';
+import { ISearchFilters } from './useSearch';
+
+function useGetData() {
   const [data, setData] = useState<IStock[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const PORT = 8080;
+  const fetchData = useCallback(async (filters?: ISearchFilters) => {
+    const PORT = 8080;
 
-      try {
-        setLoading(true);
-        const searchParamsStr = query ? `?q=${query}` : '';
+    try {
+      setLoading(true);
+      const { percentageChange, price, query } = filters || {};
+      const queryStr = query ? `q=${query}` : '';
+      const percentageChangeStr = percentageChange
+        ? `&percentage_change=${percentageChange}`
+        : '';
+      const priceStr = price ? `&price=${price}` : '';
+      const searchParamsStr = filters
+        ? `?${queryStr}${percentageChangeStr}${priceStr}`
+        : '';
 
-        const response = await fetch(
-          `http://localhost:${PORT}/api/data/${searchParamsStr}`,
-        );
-        let responseData = await response.json();
+      const response = await fetch(
+        `http://localhost:${PORT}/api/data/${searchParamsStr}`,
+      );
+      let responseData = await response.json();
 
-        setData(responseData);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+      setData(responseData);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
-    fetchData();
-  }, [query]);
+  useEffect(
+    function runInitialFetch() {
+      fetchData();
+    },
+    [fetchData],
+  );
 
   return {
     data,
     loading,
+    revalidateData: fetchData,
   };
 }
 

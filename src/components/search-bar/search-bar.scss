@@ -1,5 +1,12 @@
 @use '../../base.scss';
 
+.search-filters-container {
+  display: flex;
+  flex-direction: column;
+  gap: base.$spacing-md;
+  width: 100%;
+}
+
 .search-bar {
   @include base.flex-center;
 
@@ -31,4 +38,11 @@
       background-color: base.$primary-color-dark;
     }
   }
+}
+
+.search-filters-select-container {
+  @include base.flex-center;
+
+  justify-content: flex-start;
+  gap: base.$spacing-lg;
 }
