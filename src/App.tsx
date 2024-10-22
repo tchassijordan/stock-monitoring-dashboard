@@ -13,7 +13,7 @@ import useGetData from './lib/hooks/useGetData';
 import useSearch from './lib/hooks/useSearch';
 
 export default function App() {
-  const { filters, onFilterChange } = useSearch();
+  const { filters, onFilterChange, onReset } = useSearch();
   const { data, loading, revalidateData } = useGetData();
 
   return (
@@ -23,6 +23,10 @@ export default function App() {
           filters={filters}
           onFilterChange={onFilterChange}
           onSubmit={() => revalidateData(filters)}
+          onReset={() => {
+            onReset();
+            revalidateData();
+          }}
         />
         <DataGrid data={data} columns={tableColumnsDefs} isLoading={loading} />
       </div>

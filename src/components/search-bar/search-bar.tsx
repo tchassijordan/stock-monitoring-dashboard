@@ -6,10 +6,11 @@ interface ISearchBarProps {
   filters?: ISearchFilters;
   onFilterChange?: (key: keyof ISearchFilters, value: number | string) => void;
   onSubmit?: () => void;
+  onReset?: () => void;
 }
 
 const SearchBar = (props: ISearchBarProps) => {
-  const { onFilterChange, onSubmit, filters } = props;
+  const { onFilterChange, onSubmit, onReset, filters } = props;
   const { query, percentageChange, price } = filters || {};
 
   return (
@@ -24,6 +25,9 @@ const SearchBar = (props: ISearchBarProps) => {
         />
         <button onClick={onSubmit} className="search-button">
           Search
+        </button>
+        <button onClick={onReset} className="reset-button">
+          Reset
         </button>
       </div>
       <div className="search-filters-select-container">

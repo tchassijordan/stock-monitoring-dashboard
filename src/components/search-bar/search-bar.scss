@@ -24,19 +24,31 @@
     border-radius: 8px;
   }
 
-  .search-button {
+  @mixin btn {
     padding: base.$spacing-md base.$spacing-lg;
     border: none;
-    background-color: base.$primary-color;
-    color: #fff;
     border-radius: 8px;
+    transition: background-color 0.3s;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s;
+  }
+
+  .search-button {
+    @include btn;
+
+    background-color: base.$primary-color;
+    color: #fff;
 
     &:hover {
       background-color: base.$primary-color-dark;
     }
+  }
+
+  .reset-button {
+    @include btn;
+
+    background-color: base.$secondary-color;
+    color: base.$slate-color;
   }
 }
 

@@ -23,7 +23,15 @@ const useSearch = () => {
     });
   };
 
-  return { filters, onFilterChange };
+  const onReset = () => {
+    setFilters({
+      query: '',
+      percentageChange: 0,
+      price: 0,
+    });
+  };
+
+  return { filters, onFilterChange, onReset };
 };
 
 export default useSearch;
