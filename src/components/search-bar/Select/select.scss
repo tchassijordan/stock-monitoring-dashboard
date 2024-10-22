@@ -1,0 +1,14 @@
+@use '../../../base.scss';
+
+.select-container {
+  display: flex;
+  flex-direction: column;
+  gap: base.$spacing-sm;
+  width: fit-content;
+
+  .select-label {
+    font-size: 0.85rem;
+    color: #000;
+    letter-spacing: 0.35px;
+  }
+}
