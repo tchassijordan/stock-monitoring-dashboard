@@ -3,8 +3,12 @@
 .search-filters-container {
   display: flex;
   flex-direction: column;
-  gap: base.$spacing-md;
+  gap: base.$spacing-base;
   width: 100%;
+  background-color: base.$secondary-color;
+  padding: base.$spacing-lg base.$spacing-lg;
+  border-radius: base.$spacing-sm;
+  box-sizing: border-box;
 }
 
 .search-bar {
@@ -47,8 +51,13 @@
   .reset-button {
     @include btn;
 
-    background-color: base.$secondary-color;
+    background-color: transparent;
     color: base.$slate-color;
+    border: 1px solid #c8c8cd;
+
+    &:hover {
+      background-color: #d5d5d9;
+    }
   }
 }
 
