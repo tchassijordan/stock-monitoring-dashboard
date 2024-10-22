@@ -4,7 +4,7 @@
   position: relative;
   width: 100%;
   overflow: auto;
-  max-height: 500px;
+  max-height: 450px;
   padding-right: base.$spacing-sm;
   border: 1px solid base.$input-color;
   border-radius: 8px;
@@ -55,6 +55,10 @@
   padding: base.$spacing-base;
   vertical-align: middle;
   border-bottom: 1px solid base.$input-color;
+}
+
+.table-cell--red {
+  color: red;
 }
 
 .table-spinner-container {
