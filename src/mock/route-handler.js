@@ -18,7 +18,7 @@ const routeHandler = (req, res) => {
       data.changePercent > Number(percentage_change);
     const matchPrice = data.price > Number(price);
 
-    if (matchName || matchSymbol) {
+    if (matchName && matchSymbol) {
       return false;
     }
 
