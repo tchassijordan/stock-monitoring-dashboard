@@ -29,4 +29,8 @@ To launch the project server and explore the app, run the following command:
 pnpm start
 ```
 
-The should be launch on port `8080`
+The should be launch on port `8080`.
+
+### Usage
+
+Once you open up the app on port `8080`, you should see stock table and filter/search area. You can sort any column on the table by simply click on the column title/head.
