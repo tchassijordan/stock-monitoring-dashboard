@@ -9,14 +9,30 @@ const tableColumnsDefs: ColumnDef<IStock, string | number>[] = [
     header: 'SYMBOL',
     cell: ({ getValue }) => getValue(),
     sortDescFirst: false,
-    minSize: 100,
+    size: 85,
+    sortingFn: (row1, row2) => {
+      const collator = new Intl.Collator(undefined);
+
+      return collator.compare(
+        row1?.original?.symbol ?? '',
+        row2?.original?.symbol ?? '',
+      );
+    },
   },
   {
     accessorKey: 'name',
     header: 'NAME',
     cell: ({ getValue }) => getValue(),
     sortDescFirst: false,
-    minSize: 150,
+    size: 250,
+    sortingFn: (row1, row2) => {
+      const collator = new Intl.Collator(undefined);
+
+      return collator.compare(
+        row1?.original?.name ?? '',
+        row2?.original?.name ?? '',
+      );
+    },
   },
   {
     accessorKey: 'price',
@@ -27,21 +43,36 @@ const tableColumnsDefs: ColumnDef<IStock, string | number>[] = [
       return <span>{value}</span>;
     },
     sortDescFirst: false,
-    minSize: 100,
+    size: 70,
+    sortingFn: (row1, row2, columnId) => {
+      const collator = new Intl.Collator(undefined);
+
+      return collator.compare(row1.getValue(columnId), row2.getValue(columnId));
+    },
   },
   {
     accessorKey: 'change',
     header: 'CHANGE',
     cell: ({ getValue }) => <ColorfulText value={getValue()} />,
     sortDescFirst: false,
-    minSize: 100,
+    size: 85,
+    sortingFn: (row1, row2, columnId) => {
+      const collator = new Intl.Collator(undefined);
+
+      return collator.compare(row1.getValue(columnId), row2.getValue(columnId));
+    },
   },
   {
     accessorKey: 'changePercent',
     header: 'CHANGE %',
     cell: ({ getValue }) => <ColorfulText value={getValue()} />,
     sortDescFirst: false,
-    minSize: 100,
+    size: 115,
+    sortingFn: (row1, row2, columnId) => {
+      const collator = new Intl.Collator(undefined);
+
+      return collator.compare(row1.getValue(columnId), row2.getValue(columnId));
+    },
   },
   {
     accessorKey: 'marketCap',
@@ -53,14 +84,25 @@ const tableColumnsDefs: ColumnDef<IStock, string | number>[] = [
       return formattedMarketCap;
     },
     sortDescFirst: false,
-    minSize: 150,
+    size: 115,
+    sortingFn: (row1, row2, columnId) => {
+      const collator = new Intl.Collator(undefined);
+
+      return collator.compare(row1.getValue(columnId), row2.getValue(columnId));
+    },
   },
   {
     accessorKey: 'lastUpdated',
     header: 'LAST UPDATED',
     cell: ({ getValue }) => new Date(getValue()).toLocaleString(),
     sortDescFirst: false,
-    minSize: 150,
+    size: 160,
+    sortingFn: (row1, row2) => {
+      return (
+        new Date(row1.original.lastUpdated).getTime() -
+        new Date(row2.original.lastUpdated).getTime()
+      );
+    },
   },
 ];
 

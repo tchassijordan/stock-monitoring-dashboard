@@ -35,6 +35,13 @@
   border-bottom: 1px solid base.$input-color;
 }
 
+.table-head-button {
+  display: flex;
+  align-items: center;
+  gap: base.$spacing-sm;
+  cursor: pointer;
+}
+
 .table-row {
   transition: background-color 0.2s ease-in-out;
 

@@ -3,6 +3,8 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getSortedRowModel,
+  SortDirection,
   useReactTable,
 } from '@tanstack/react-table';
 
@@ -24,6 +26,7 @@ const DataGrid = ({ data, columns, isLoading }: IDataGrid) => {
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   if (isLoading) return <Spinner />;
@@ -36,12 +39,25 @@ const DataGrid = ({ data, columns, isLoading }: IDataGrid) => {
             <tr key={headerGroup.id} className="table-row">
               {headerGroup.headers.map((header) => (
                 <th key={header.id} className="table-head">
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext(),
-                      )}
+                  <div
+                    className="table-head-button"
+                    style={{ minWidth: header.getSize() }}
+                    onClick={header.column.getToggleSortingHandler()}
+                    tabIndex={1}
+                    role="button"
+                  >
+                    <div>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                    </div>
+                    {header.column.getIsSorted()
+                      ? getSortIcon(header.column.getIsSorted())
+                      : null}
+                  </div>
                 </th>
               ))}
             </tr>
@@ -92,5 +108,47 @@ const Spinner = () => {
     </div>
   );
 };
+
+const getSortIcon = (sortOrder: SortDirection | false) => {
+  if (!sortOrder) return null;
+
+  const Icon = sortOrder === 'asc' ? ArrowUp : ArrowDown;
+
+  return <Icon />;
+};
+
+const ArrowUp = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="m5 12 7-7 7 7" />
+    <path d="M12 19V5" />
+  </svg>
+);
+
+const ArrowDown = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 5v14" />
+    <path d="m19 12-7 7-7-7" />
+  </svg>
+);
 
 export default DataGrid;
